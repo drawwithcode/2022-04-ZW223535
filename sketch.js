@@ -10,23 +10,24 @@ function setup() {
   //Istruzioni
   myText1 = createElement("h2", "[Open with your Phone]");
   myText1.style(
-    "margin-top:30%;text-align:center;color:white; font-size: 10px; font-family:'Fuzzy Bubbles'"
+    "margin-top:20%;text-align:center;color:white; font-size: 10px; font-family:'Fuzzy Bubbles'"
   );
   //Nome dell'autore
   myText2 = createElement("h1", "What's your name?");
   myText2.style(
-    "margin-top:10px;text-align:center;color:white;font-size: 20px; font-family:'Fuzzy Bubbles'"
+    "margin-top:2%;text-align:center;color:white;font-size: 20px; font-family:'Fuzzy Bubbles'"
   );
 
   //Inserimento nome
   myType = createInput("").attribute("placeholder", "write your name");
   myType.style(
-    "position:absolute; margin-top:5px; left: 50%; transform: translate(-50%,-50%); text-align: center;font-family:'Fuzzy Bubbles'; font-size:10px; border-radius: 10px"
+    "position:absolute; margin-top:2%; left: 50%; transform: translate(-50%,-50%); text-align: center;font-family:'Fuzzy Bubbles'; font-size:10px; border-radius: 10px"
   );
 
+  //Botton
   go = createButton("Next");
   go.style(
-    "position:absolute; left:50%;  top:50%;transform: translate(-50%,-50%);text-align:center;font-family:'Fuzzy Bubbles'; font-size:10px; border-radius: 10px"
+    "position:absolute; left:50%;margin-top:7%;transform: translate(-50%,-50%);text-align:center;font-family:'Fuzzy Bubbles'; font-size:10px; border-radius: 10px"
   );
 
   go.mouseClicked(nextPage);

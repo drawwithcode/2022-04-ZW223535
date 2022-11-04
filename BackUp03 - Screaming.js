@@ -1,23 +1,21 @@
-//Per prendere il nome dalla pagina precedente
+//Use 2 fingers to
+//shake to add glitters
+//scream to add shange the colors
+//word wandomizer
+
 const urlString = window.location.href;
 const url = new URL(urlString);
 let parameter = url.searchParams.get("currentUser");
 
 let myText;
 let myText2;
-let myText3;
-let myText4;
-let container;
-
 let mic;
-
 let hue = 10;
+
 let myColor;
-
 let myType;
-
+let myLetter;
 let myGlitter;
-
 let button;
 
 let letter = [
@@ -30,6 +28,8 @@ let letter = [
   "G",
   "H",
   "I",
+  "J",
+  "K",
   "L",
   "M",
   "N",
@@ -41,10 +41,12 @@ let letter = [
   "T",
   "U",
   "V",
+  "W",
+  "X",
+  "Y",
   "Z",
 ];
-let type = ["ANIMAL", "CITY", "PLANT", "FOOD", "ACTION", "DRINK"];
-
+let type = ["Animal", "City", "Plant", "fFood", "Action", "Drink"];
 let p1 = [
   "#F8CBDC",
   "#F5B4CB",
@@ -56,59 +58,52 @@ let p1 = [
   "#FFFFF4",
 ];
 
+//let p4 = ["#F18A95", "#DCE9C1", "#FBD2B6", "#F5A8A6", "#F18A95"];
+//let p5 = ["white"];
+
 function setup() {
   colorMode(HSB, 360, 100, 100);
 
   //Nome dell'autore
   myText = createElement("h1", parameter + ", draw a:");
   myText.style(
-    "margin-bottom:-1px;text-align:center;color:white; font-size: 20px; font-family:'Fuzzy Bubbles'"
+    "margin-top:10px;text-align:center;color:white; font-size: 20px; font-family:'Fuzzy Bubbles'"
   );
 
-  //Type Randomizer
-  myType = createP(random(type) + ", starting with " + random(letter));
+  //Nome dell'autore
+  myType = createP("A" + random(word));
   myType.style(
-    "margin:-1px;text-align:center;color:white; font-size: 15px; font-family:'Fuzzy Bubbles'"
+    "margin-top:10px;text-align:left;color:white; font-size: 20px; font-family:'Fuzzy Bubbles'"
+  );
+
+  //Nome dell'autore
+  myLetter = createP("starting with" + random(word));
+  myType.style(
+    "margin-top:10px;text-align:left;color:white; font-size: 20px; font-family:'Fuzzy Bubbles'"
   );
 
   //Info Canvas
-  container = createElement("div");
-  let canvas = createCanvas(windowWidth - 50, windowHeight - 200);
-  canvas.style("border-radius: 30px; margin-top:2%; margin-bottom:2%");
+  let canvas = createCanvas(windowWidth - 50, windowHeight - 190);
+  canvas.style("border-radius: 30px");
   const x = (windowWidth - width) / 2;
   const y = (windowHeight - height) / 3;
   canvas.position(x, y);
   background("white");
-  canvas.parent(container);
 
-  //Sfondo Nero
   select("body").attribute("bgColor", "black");
 
-  myText2 = createP("1 - Scream to change the brush SIZE and COLOR");
+  //Testo
+  myText2 = createP("Choose your Color:");
   myText2.style(
-    "padding-left:10%; margin-1px;text-align:center;color:white; font-size: 12px; font-family:'Fuzzy Bubbles'"
+    "position:absolute;margin-left:20%;  bottom:9%;transform: translate(-50%,-50%);text-align:center;color:white; font-size: 12px; font-family:'Fuzzy Bubbles'"
   );
-  myText2.position(0, windowHeight * 0.85);
-
-  myText3 = createP("2 - Use 2 fingers to be more creative!");
-  myText3.style(
-    "padding-left:10%; margin:-1px;text-align:center;color:white; font-size: 12px; font-family:'Fuzzy Bubbles'"
-  );
-  myText3.position(0, windowHeight * 0.89);
-
-  myText4 = createP("3 - Shake to add SPARKLES");
-  myText4.style(
-    "padding-left:10%; margin:-1px;text-align:center;color:white; font-size: 12px; font-family:'Fuzzy Bubbles'"
-  );
-  myText4.position(0, windowHeight * 0.91);
 
   //Bottone - Salvare l'opera
   button = createButton("Save");
   button.mousePressed(saveImage);
   button.style(
-    "text-align:center;font-family:'Fuzzy Bubbles'; font-size:10px; border-radius: 10px"
+    "position:absolute; left:90%; bottom:1%;transform: translate(-50%,-50%);text-align:center;font-family:'Fuzzy Bubbles'; font-size:10px; border-radius: 10px"
   );
-  button.position(width / 2, windowHeight * 0.95);
 
   setShakeThreshold(15);
 
@@ -118,6 +113,7 @@ function setup() {
 
 function draw() {
   //Disegno
+
   myGlitter = color(random(p1));
 
   if (mic) {
@@ -128,6 +124,7 @@ function draw() {
     for (let i = 0; i < touches.length; i++) {
       const touch = touches[i];
       push();
+      //let r = random(2, 4);
       myColor = color(hue, random(28, 50), 98);
       stroke(myColor);
       strokeWeight(r);
@@ -135,6 +132,8 @@ function draw() {
       pop();
     }
   }
+
+  console.log(mic);
 }
 
 //Shaking and Glitters
@@ -150,6 +149,12 @@ function deviceShaken() {
     pop();
   }
 }
+
+//function touchStarted() {
+//userStartAudio();
+//mic = new p5.AudioIn();
+//mic.start();
+//}
 
 //Base per gli esagoni e pentagoni
 function polygon(x, y, radius, npoints) {
