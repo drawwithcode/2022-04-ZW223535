@@ -43,7 +43,7 @@ function draw() {
 
 function nextPage() {
   window.open(
-    url.origin + "/drawing.html?currentUser=" + myType.value(),
+    url.origin + "/2022-04-ZW223535/drawing.html?currentUser=" + myType.value(),
     "_self"
   );
 }
